@@ -1,4 +1,5 @@
 // app/signup/page.tsx
+'use client';
 
 import Link from 'next/link';
 import React from 'react';
@@ -20,7 +21,22 @@ export default function SignupPage() {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-6 shadow rounded-lg sm:px-10">
-          <form className="space-y-6">
+        <form
+          className="space-y-6"
+          onSubmit={(e) => {
+            e.preventDefault();
+            const form = e.currentTarget;
+            const formData = new FormData(form);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const password = formData.get('password');
+
+            // For now, just log them (remove later)
+            console.log({ name, email, password });
+
+            // You will replace this with your API/database call
+          }}
+        >
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                 Nome completo
