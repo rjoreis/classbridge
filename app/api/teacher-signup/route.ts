@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     .single();
 
   if (error || !allowed) {
-    return NextResponse.json({ error: 'Domínio não permitido.' }, { status: 403 });
+    return NextResponse.json({ error: 'Erro ao criar conta.' }, { status: 403 });
   }
 
   // Create the user using the Admin API
