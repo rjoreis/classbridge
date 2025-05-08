@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { supabase } from '@/utils/supabase/client';
 
 export default function TeacherDashboard() {
@@ -70,6 +71,13 @@ export default function TeacherDashboard() {
           {greeting}, {firstName}!
         </h1>
         <p className="mb-6 text-gray-700">Esta é a área reservada a professores.</p>
+        
+        <Link href="/dashboard/teacher/create-class">
+            <button className="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                Criar nova turma
+            </button>
+        </Link>
+        
         <button
           onClick={handleLogout}
           className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
