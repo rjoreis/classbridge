@@ -37,7 +37,7 @@ export default function LoginPage() {
       .single();
 
     if (teacher && !teacherError) {
-      router.push('/teacher-dashboard');
+      router.push('/dashboard/teacher');
     } else {
       // 🔜 Add parent check here later
       setError('Utilizador não autorizado ou função não reconhecida.');
