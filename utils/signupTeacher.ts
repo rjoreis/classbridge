@@ -1,26 +1,11 @@
-// utils/signupTeacher.ts
+export const signupTeacher = async (form: { fullName: string; email: string; password: string }) => {
+  const res = await fetch('/api/teacher-signup', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(form),
+  });
 
-export async function signupTeacher({ 
-    fullName, 
-    email,
-    password 
-}: { 
-    fullName: string;
-    email: string;
-    password: string 
-}) {
-    const res = await fetch('/api/teacher-signup', {
-      method: 'POST',
-      headers: { 
-        'Content-Type': 'application/json' 
-    },
-      body: JSON.stringify({ fullName, email, password })
-    });
-  
-    const data = await res.json();
-  
-    if (!res.ok) throw new Error(data.error || 'Erro ao criar a conta');
-  
-    return data;
-  }
-  
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || 'Erro no registo');
+  return data;
+};

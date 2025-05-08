@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { signupTeacher } from "@/utils/signupTeacher";
+import { signupTeacher } from "utils/signupTeacher";
 
 export default function SignupPage() {
   const [fullName, setFullName] = useState("");
