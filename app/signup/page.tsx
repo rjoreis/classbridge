@@ -36,9 +36,6 @@ export default function SignupPage() {
       <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full">
         {/* Voltar button */}
         <div className="mb-4">
-          <Link href="/" className="text-indigo-600 hover:underline">
-            &larr; Voltar
-          </Link>
         </div>
 
         <h1 className="text-2xl font-semibold mb-6 text-center text-indigo-700">
@@ -97,6 +94,10 @@ export default function SignupPage() {
           >
             {loading ? "A criar conta..." : "Criar Conta"}
           </button>
+
+          <div className=" text-center">
+          <Link href="/" className="text-indigo-600">&larr; Voltar</Link>
+        </div>
         </form>
 
         {message && <p className="text-green-600 mt-4 text-center">{message}</p>}

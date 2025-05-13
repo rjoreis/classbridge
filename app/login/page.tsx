@@ -49,12 +49,12 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <form onSubmit={handleLogin} className="bg-white p-8 rounded shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+        <h2 className="text-2xl text-indigo-600 font-bold mb-6 text-center">Login</h2>
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
         <input
           type="email"
           placeholder="Email"
-          className="w-full p-3 border rounded mb-4"
+          className="w-full p-3 border rounded mb-4 text-slate-500 bg-white-50 border-slate-200 focus:outline-slate-400"
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
           required
@@ -62,7 +62,7 @@ export default function LoginPage() {
         <input
           type="password"
           placeholder="Password"
-          className="w-full p-3 border rounded mb-6"
+          className="w-full p-3 border rounded mb-6 text-slate-500 bg-white-50 border-slate-200 focus:outline-slate-400"
           value={form.password}
           onChange={(e) => setForm({ ...form, password: e.target.value })}
           required
@@ -76,7 +76,7 @@ export default function LoginPage() {
         </button>
 
         <div className="mt-4 text-center">
-          <Link href="/" className="text-indigo-600 hover:underline">&larr; Voltar</Link>
+          <Link href="/" className="text-indigo-600">&larr; Voltar</Link>
         </div>
       </form>
     </div>
