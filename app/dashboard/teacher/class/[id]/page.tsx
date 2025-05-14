@@ -95,33 +95,40 @@ export default function ClassPage() {
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-md p-8">
-        <h1 className="text-2xl font-bold text-indigo-700 mb-4">Turma {classData?.year} {classData?.class_name}</h1>
+        <h1 className="text-2xl font-bold text-indigo-700 mb-4">Turma {classData?.year}º {classData?.class_name}</h1>
         <label className="block mb-4">
           <span className="text-gray-700 font-medium">Data:</span>
           <input
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className="mt-1 block w-full border border-gray-300 rounded px-3 py-2"
+            className="mt-1 block w-full border border-gray-300 text-slate-500 rounded px-3 py-2"
           />
         </label>
 
         <div className="mb-4">
           <p className="text-gray-700 font-medium mb-1">Humor da turma:</p>
           <div className="flex gap-4">
-            {moods.map((m) => (
-              <button
-                key={m.value}
-                onClick={() => setMood(m.value)}
-                className={`text-2xl px-4 py-2 rounded border ${
-                  mood === m.value
-                    ? 'bg-green-600 text-white'
-                    : 'bg-white text-gray-800 border-gray-300'
-                }`}
-              >
-                {m.label}
-              </button>
-            ))}
+            {moods.map((m) => {
+              let selectedBg = '';
+              if (mood === m.value) {
+                if (m.value === 'happy') selectedBg = 'bg-green-600 text-white';
+                if (m.value === 'neutral') selectedBg = 'bg-yellow-400 text-white';
+                if (m.value === 'sad') selectedBg = 'bg-red-500 text-white';
+              } else {
+                selectedBg = 'bg-white text-gray-800 border-gray-300';
+              }
+
+              return (
+                <button
+                  key={m.value}
+                  onClick={() => setMood(m.value)}
+                  className={`text-2xl px-4 py-2 rounded border ${selectedBg}`}
+                >
+                  {m.label}
+                </button>
+              );
+            })}
           </div>
         </div>
 
