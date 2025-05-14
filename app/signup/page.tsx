@@ -50,7 +50,7 @@ export default function SignupPage() {
             <input
               type="text"
               id="fullName"
-              className="mt-1 w-full border text-gray-700 border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="mt-1 w-full border text-gray-700 border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               required
@@ -64,7 +64,7 @@ export default function SignupPage() {
             <input
               type="email"
               id="email"
-              className="mt-1 w-full border text-gray-700 border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="mt-1 w-full border text-gray-700 border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -78,7 +78,7 @@ export default function SignupPage() {
             <input
               type="password"
               id="password"
-              className="mt-1 w-full border text-gray-700 border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="mt-1 w-full border text-gray-700 border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -88,7 +88,7 @@ export default function SignupPage() {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full p-2 rounded-md transition text-white ${
+            className={`w-full p-3 rounded-md transition text-white ${
               loading ? "bg-indigo-300 cursor-not-allowed" : "bg-indigo-600 hover:bg-indigo-700"
             }`}
           >

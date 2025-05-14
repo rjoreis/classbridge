@@ -54,7 +54,7 @@ export default function LoginPage() {
         <input
           type="email"
           placeholder="Email"
-          className="w-full p-3 border rounded mb-4 text-slate-500 bg-white-50 border-slate-200 focus:outline-slate-400"
+          className="w-full p-3 border rounded-md mb-4 text-slate-500 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
           required
@@ -62,14 +62,14 @@ export default function LoginPage() {
         <input
           type="password"
           placeholder="Password"
-          className="w-full p-3 border rounded mb-6 text-slate-500 bg-white-50 border-slate-200 focus:outline-slate-400"
+          className="w-full p-3 border rounded-md mb-6 text-slate-500 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           value={form.password}
           onChange={(e) => setForm({ ...form, password: e.target.value })}
           required
         />
         <button
           type="submit"
-          className="w-full bg-indigo-600 text-white p-3 rounded hover:bg-indigo-700 transition"
+          className="w-full bg-indigo-600 text-white p-3 rounded-md hover:bg-indigo-700 transition"
           disabled={loading}
         >
           {loading ? 'A entrar...' : 'Entrar'}
