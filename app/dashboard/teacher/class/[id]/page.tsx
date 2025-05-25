@@ -71,13 +71,13 @@ export default function ClassPage() {
     fetchCheckin();
   }, [classId, date]);
 
-if (loading) {
-  return (
-    <div className="min-h-screen flex items-center justify-center">
-      <p className="text-gray-700 text-lg">Carregando dados...</p>
-    </div>
-  );
-}
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-gray-700 text-lg">Carregando dados...</p>
+      </div>
+    );
+  }
 
 
   const handleSave = async () => {
@@ -161,9 +161,16 @@ if (loading) {
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-md p-8">
-        <h1 className="text-2xl font-bold text-indigo-700 mb-4">
-          Turma {classData?.year}º {classData?.class_name}
-        </h1>
+        <div className="flex items-center justify-between mb-4">
+          <h1 className="text-2xl font-bold text-indigo-700">
+            Turma {classData?.year}º {classData?.class_name}
+          </h1>
+          <Link href={`/dashboard/teacher/class/${classId}/students`}>
+            <button className="text-sm bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
+              Ver Alunos
+            </button>
+          </Link>
+        </div>
         <label className="block mb-4">
           <span className="text-gray-700 font-medium">Data:</span>
           <input
@@ -187,72 +194,71 @@ if (loading) {
           </label>
         </div>
 
-      <fieldset disabled={noClass} className={noClass ? 'opacity-50 pointer-events-none' : ''}>
-        <div className="mb-4">
-          <p className="text-gray-700 font-medium mb-1">Humor da turma:</p>
-          <div className="flex gap-4">
-            {moods.map((m) => {
-              let selectedBg = '';
-              if (class_mood === m.value) {
-                if (m.value === 'happy') selectedBg = 'bg-green-600 text-white';
-                if (m.value === 'neutral') selectedBg = 'bg-yellow-400 text-white';
-                if (m.value === 'sad') selectedBg = 'bg-red-500 text-white';
-              } else {
-                selectedBg = 'bg-white text-gray-800 border-gray-300';
-              }
+        <fieldset disabled={noClass} className={noClass ? 'opacity-50 pointer-events-none' : ''}>
+          <div className="mb-4">
+            <p className="text-gray-700 font-medium mb-1">Humor da turma:</p>
+            <div className="flex gap-4">
+              {moods.map((m) => {
+                let selectedBg = '';
+                if (class_mood === m.value) {
+                  if (m.value === 'happy') selectedBg = 'bg-green-600 text-white';
+                  if (m.value === 'neutral') selectedBg = 'bg-yellow-400 text-white';
+                  if (m.value === 'sad') selectedBg = 'bg-red-500 text-white';
+                } else {
+                  selectedBg = 'bg-white text-gray-800 border-gray-300';
+                }
 
-              return (
-                <button
-                  key={m.value}
-                  onClick={() => setMood(m.value)}
-                  className={`text-2xl px-4 py-2 rounded border transition-all duration-200 ease-in-out transform hover:scale-105 hover:shadow ${selectedBg} cursor-pointer`}
-                >
-                  {m.label}
-                </button>
-              );
-            })}
+                return (
+                  <button
+                    key={m.value}
+                    onClick={() => setMood(m.value)}
+                    className={`text-2xl px-4 py-2 rounded border transition-all duration-200 ease-in-out transform hover:scale-105 hover:shadow ${selectedBg} cursor-pointer`}
+                  >
+                    {m.label}
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </fieldset>
+        </fieldset>
 
 
-      <fieldset disabled={noClass} className={noClass ? 'opacity-50 pointer-events-none' : ''}>
-        <div className="mb-4">
-          <p className="text-gray-700 font-medium mb-1">Comportamento / Envolvimento:</p>
-          <div className="flex flex-wrap gap-4">
-            {engagementOptions.map((option) => {
-              const isSelected = engagement === option;
-              return (
-                <button
-                  key={option}
-                  onClick={() => setEngagement(option)}
-                  className={`px-4 py-2 rounded border transition-all duration-200 ease-in-out transform hover:scale-105 hover:shadow ${
-                    isSelected
-                      ? 'bg-indigo-600 text-white'
-                      : 'bg-white text-gray-800 border-gray-300'
-                  } cursor-pointer`}
-                >
-                  {option}
-                </button>
-              );
-            })}
+        <fieldset disabled={noClass} className={noClass ? 'opacity-50 pointer-events-none' : ''}>
+          <div className="mb-4">
+            <p className="text-gray-700 font-medium mb-1">Comportamento / Envolvimento:</p>
+            <div className="flex flex-wrap gap-4">
+              {engagementOptions.map((option) => {
+                const isSelected = engagement === option;
+                return (
+                  <button
+                    key={option}
+                    onClick={() => setEngagement(option)}
+                    className={`px-4 py-2 rounded border transition-all duration-200 ease-in-out transform hover:scale-105 hover:shadow ${isSelected
+                        ? 'bg-indigo-600 text-white'
+                        : 'bg-white text-gray-800 border-gray-300'
+                      } cursor-pointer`}
+                  >
+                    {option}
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </fieldset>
+        </fieldset>
 
 
-      <fieldset disabled={noClass} className={noClass ? 'opacity-50 pointer-events-none' : ''}>
-        <label className="block mb-6">
-          <span className="text-gray-700 font-medium">Notas (opcional):</span>
-          <textarea
-            rows={3}
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-            className="mt-1 block w-full border border-gray-300 text-slate-500 rounded px-3 py-2"
-            placeholder="Escreva alguma observação..."
-          />
-        </label>
-      </fieldset>
+        <fieldset disabled={noClass} className={noClass ? 'opacity-50 pointer-events-none' : ''}>
+          <label className="block mb-6">
+            <span className="text-gray-700 font-medium">Notas (opcional):</span>
+            <textarea
+              rows={3}
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              className="mt-1 block w-full border border-gray-300 text-slate-500 rounded px-3 py-2"
+              placeholder="Escreva alguma observação..."
+            />
+          </label>
+        </fieldset>
 
         <button
           onClick={handleSave}
